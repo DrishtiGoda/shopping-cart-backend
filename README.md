@@ -1,8 +1,11 @@
 ## Shopping Cart Backend Application
 
+<hr>
 
 ### Overview
 This is a Spring Boot application for managing a shopping cart. It provides APIs for adding, removing, and updating items in the cart, as well as viewing the items in the cart.
+
+<hr>
 
 ### Features
 
@@ -16,25 +19,53 @@ This is a Spring Boot application for managing a shopping cart. It provides APIs
 - **Pagination**: Pagination is implemented for endpoints returning a large number of results.
 - **Swagger UI**: Swagger UI is integrated to provide an interactive documentation for the APIs.
 
-### Shopping cart UML Diagram
-![Shopping Cart.png](..%2F..%2F..%2F..%2FUsers%2Fdrishti%2FDownloads%2FShopping%20Cart.png)
+<hr>
+
+### Shopping Cart UML Diagram
+![Shopping Cart.png](src%2Fmain%2Fresources%2Fstatic%2FShopping%20Cart.png)
 
 ### Technologies Used
+<hr>
+
 - Java 
 - Spring Boot
 - PostgreSQL
+- Docker 
 
 ### Installation
+<hr>
+
+#### I. Docker Installation
 
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/DrishtiGoda/shopping-cart-backend.git
     ```
-2. **Set up PostgreSQL**: Ensure you have PostgreSQL installed and running. Update the `application.properties` file with your PostgreSQL database configuration.**Build and Run the Application**:
-3. 
+
+2. **Build and Run with Docker Compose**:
     ```bash
-    cd shopping-cart
+    cd shopping-cart-backend
+    docker-compose up --build
+    ```
+
+3. **Explore the API**: Navigate to `http://localhost:8080/swagger-ui.html` to explore the API documentation using Swagger UI.
+
+<hr>
+
+####  II. Local Installation
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/DrishtiGoda/shopping-cart-backend.git
+    ```
+
+2. **Set up PostgreSQL**: Ensure you have PostgreSQL installed and running. Update the `application.properties` file with your PostgreSQL database configuration.
+
+
+3. **Build and Run the Application**:
+    ```bash
+    cd shopping-cart-backend
     ./mvnw spring-boot:run
     ```
-4. **Explore the API**: Navigate to `http://localhost:8080/swagger-ui.html` to explore the API documentation using Swagger UI.
 
+4. **Explore the API**: Navigate to `http://localhost:8080/swagger-ui.html` to explore the API documentation using Swagger UI.
