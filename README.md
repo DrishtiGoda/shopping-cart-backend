@@ -1,39 +1,32 @@
 ## Shopping Cart Backend Application
 
-<hr>
-
-### Overview
+## Overview
 This is a Spring Boot application for managing a shopping cart. It provides APIs for adding, removing, and updating items in the cart, as well as viewing the items in the cart.
 
-<hr>
-
-### Features
+## Features
 
 - **HTTP Status Code Handling**: The application handles appropriate HTTP status codes for different scenarios.
 - **Exception Handling**: Exception handling is implemented using try-catch blocks to ensure graceful error handling.
-- **Logging**: Logging is implemented throughout the application using a logger framework to track important events and errors.
+- **Logging**: Logging is implemented using a logger framework to track important events and errors.
 - **API Versioning**: The APIs are versioned to support backward compatibility and smooth upgrades.
 - **JWT Token**: JSON Web Token (JWT) is used for authentication and authorization of API requests.
 - **Unit Testing**: Test cases are included to ensure the correctness of the implemented functionalities.
 - **Continuous Integration Pipeline**: A CI pipeline is set up for automated testing and deployment.
 - **Pagination**: Pagination is implemented for endpoints returning a large number of results.
 - **Swagger UI**: Swagger UI is integrated to provide an interactive documentation for the APIs.
+- **Docker**: Docker is used for containerizing the application to ensure consistency across different environments.
 
-<hr>
+## Shopping Cart UML Diagram
+<img src="src/main/resources/static/Shopping%20Cart.png" alt="Shopping Cart" height="500" />
 
-### Shopping Cart UML Diagram
-![Shopping Cart.png](src%2Fmain%2Fresources%2Fstatic%2FShopping%20Cart.png)
-
-### Technologies Used
-<hr>
+## Technologies Used
 
 - Java 
 - Spring Boot
 - PostgreSQL
 - Docker 
 
-### Installation
-<hr>
+## Installation
 
 #### I. Docker Installation
 
@@ -50,7 +43,7 @@ This is a Spring Boot application for managing a shopping cart. It provides APIs
 
 3. **Explore the API**: Navigate to `http://localhost:8080/swagger-ui.html` to explore the API documentation using Swagger UI.
 
-<hr>
+##
 
 ####  II. Local Installation
 
