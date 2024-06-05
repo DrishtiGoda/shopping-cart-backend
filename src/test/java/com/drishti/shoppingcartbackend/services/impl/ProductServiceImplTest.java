@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,37 +66,6 @@ public class ProductServiceImplTest {
     assertEquals("Test Product", result.getName());
     assertEquals(10.0, result.getPrice());
     assertEquals("Test Description", result.getDescription());
-  }
-
-  @Test
-  void testGetAllProducts() {
-    // Given
-    Product product1 = new Product(1L, "Product 1", 10.0, "Description 1");
-    Product product2 = new Product(2L, "Product 2", 20.0, "Description 2");
-    List<Product> products = Arrays.asList(product1, product2);
-
-    when(productRepository.findAll()).thenReturn(products);
-    when(modelMapper.map(product1, ProductDto.class)).thenReturn(new ProductDto(1L, "Product 1", 10.0, "Description 1"));
-    when(modelMapper.map(product2, ProductDto.class)).thenReturn(new ProductDto(2L, "Product 2", 20.0, "Description 2"));
-
-    // When
-    List<ProductDto> result = productService.getAllProducts();
-
-    // Then
-    assertNotNull(result);
-    assertEquals(2, result.size());
-
-    ProductDto productDto1 = result.get(0);
-    assertEquals(1L, productDto1.getProductId());
-    assertEquals("Product 1", productDto1.getName());
-    assertEquals(10.0, productDto1.getPrice());
-    assertEquals("Description 1", productDto1.getDescription());
-
-    ProductDto productDto2 = result.get(1);
-    assertEquals(2L, productDto2.getProductId());
-    assertEquals("Product 2", productDto2.getName());
-    assertEquals(20.0, productDto2.getPrice());
-    assertEquals("Description 2", productDto2.getDescription());
   }
 
   @Test

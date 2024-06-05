@@ -1,5 +1,6 @@
 package com.drishti.shoppingcartbackend.security;
 
+import com.drishti.shoppingcartbackend.config.AppConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,8 +16,6 @@ import java.util.function.Function;
 public class JwtTokenHelper {
   public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-  private String secret = "drishtiJwtKey";
-
   public String getUsernameFromToken(String token) {
     return getClaimFromToken(token, Claims::getSubject);
   }
@@ -31,7 +30,7 @@ public class JwtTokenHelper {
   }
 
   public Claims getAllClaimsFromToken(String token) {
-    return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    return Jwts.parser().setSigningKey(AppConstants.JWT_SECRET).parseClaimsJws(token).getBody();
   }
 
   private Boolean isTokenExpired(String token) {
@@ -50,7 +49,7 @@ public class JwtTokenHelper {
 
     return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(createdDate)
             .setExpiration(expirationDate)
-            .signWith(SignatureAlgorithm.HS512, secret).compact();
+            .signWith(SignatureAlgorithm.HS512, AppConstants.JWT_SECRET).compact();
   }
 
   public Boolean validateToken(String token, UserDetails userDetails) {

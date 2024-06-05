@@ -8,7 +8,7 @@ public interface ProductService {
 
   ProductDto addProduct(ProductDto productDto);
 
-  List<ProductDto> getAllProducts();
+  List<ProductDto> getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection);
 
   ProductDto getProductById(Long productId);
 
