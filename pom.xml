@@ -154,6 +154,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>shopping-cart-backend</finalName>
     </build>
 
 </project>
