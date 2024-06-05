@@ -4,6 +4,7 @@ import com.drishti.shoppingcartbackend.exceptions.ResourceNotFoundException;
 import com.drishti.shoppingcartbackend.payloads.ApiResponse;
 import com.drishti.shoppingcartbackend.payloads.ProductDto;
 import com.drishti.shoppingcartbackend.services.ProductService;
+import com.drishti.shoppingcartbackend.config.AppConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +25,7 @@ public class ProductController {
   private ProductService productService;
 
   @PostMapping("")
-  public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto productDto) {
+  public ResponseEntity<ProductDto> addProduct(@Valid @RequestBody ProductDto productDto) {
     log.info("Starting addProduct method - Attempting to add product with name: {}", productDto.getName());
 
     try {
@@ -41,11 +43,16 @@ public class ProductController {
 
 
   @GetMapping("")
-  public ResponseEntity<List<ProductDto>> getAllProducts() {
+  public ResponseEntity<List<ProductDto>> getAllProducts(
+          @RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+          @RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+          @RequestParam(value = "sortBy", defaultValue = AppConstants.SORT_BY, required = false) String sortBy,
+          @RequestParam(value = "sortDirection", defaultValue = AppConstants.SORT_DIRECTION, required = false) String sortDirection) {
+
     log.info("Starting getAllProducts method - Attempting to retrieve all products");
 
     try {
-      List<ProductDto> allProducts = this.productService.getAllProducts();
+      List<ProductDto> allProducts = this.productService.getAllProducts(pageNumber, pageSize, sortBy, sortDirection);
       log.info("Successfully retrieved {} products", allProducts.size());
 
       return new ResponseEntity<>(allProducts, HttpStatus.OK);
@@ -86,7 +93,7 @@ public class ProductController {
 
 
   @PutMapping("/{productId}")
-  public ResponseEntity<?> updateProductById(@PathVariable Long productId, @RequestBody ProductDto productDto) {
+  public ResponseEntity<?> updateProductById(@Valid @PathVariable Long productId, @RequestBody ProductDto productDto) {
     log.info("Starting updateProductById method - Attempting to update product with ID: {}", productId);
 
     try {
